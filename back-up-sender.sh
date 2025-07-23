@@ -13,9 +13,10 @@ my_dir=$(dirname "$0")
 #capture the current date, and store it in the format yyy-mm-dd
 current_date=$(date +%Y-%m-%d)
 
-rsync_options="-avb --backup-dir $2/$current_date --delete" #--dry-run removed for testing
+rsync_options="-avb --backup-dir $current_date --delete" #--dry-run removed for testing
 
-$(which rsync) $rsync_options $my_dir/*.log  $PI_USER@$PI_HOST:"$PI_PATH" >> backup_$current_date.log 
+rsync_transfer="-av --remove-source-files"
 
-#it creates a current directory inside
-#target directory to confirm that is the last recent version of the backup.
+$(which rsync) $rsync_options $my_dir/*.log  $PI_USER@$PI_HOST:"$PI_PATH" >> $my_dir/backup_$current_date.log
+
+$(which rsync) $rsync_transfer $my_dir/backup_$current_date.log $PI_USER@$PI_HOST:"$PI_PATH"/backup_$current_date.log 
