@@ -32,7 +32,6 @@ $(which rsync) $rsync_options $1 $PI_USER@$PI_HOST:"$PI_PATH"/BackUp-Morgoth >> 
 # then transfer that log file to the pi server as well. 
 $(which rsync) $rsync_transfer $script_dir/backup_$current_date.log $PI_USER@$PI_HOST:"$PI_PATH"/BackUp-Morgoth/backup_$current_date.log 
 
-sleep 0.5
 
 echo "Backup completed successfully on $current_date"
 echo "Source directory: $1"
