@@ -27,7 +27,7 @@ rsync_transfer="-av --remove-source-files"
 
 # commands rsync to transfer the specific files to back up and send all output to a log. 
 # the log stores in the same directory where the files are coming from
-$(which rsync) $rsync_options $1 $PI_USER@$PI_HOST:"$PI_PATH"/BackUp-Morgoth >> $1/backup_$current_date.log
+$(which rsync) $rsync_options $1 $PI_USER@$PI_HOST:"$PI_PATH"/BackUp-Morgoth >> $script_dir/backup_$current_date.log
 
 # then transfer that log file to the pi server as well. 
-$(which rsync) $rsync_transfer $1/backup_$current_date.log $PI_USER@$PI_HOST:"$PI_PATH"/BackUp-Morgoth/backup_$current_date.log 
+$(which rsync) $rsync_transfer $script_dir/backup_$current_date.log $PI_USER@$PI_HOST:"$PI_PATH"/BackUp-Morgoth/backup_$current_date.log 
